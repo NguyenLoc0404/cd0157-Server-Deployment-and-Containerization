@@ -14,6 +14,7 @@ phases:
       # Download the latest stable release kubectl      
       # - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       # You must use a kubectl version that is within one minor version difference of your Amazon EKS cluster control plane. 
+
       # For example, a 1.21 kubectl client works with Kubernetes 1.20, 1.21 and 1.22 clusters.
       # Ref: https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html OR https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
       # To download a specific version v1.22.0 on Linux, use:
@@ -23,7 +24,8 @@ phases:
       # Validate the kubectl binary against the checksum file
       - echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
       # Install kubectl
-      - chmod +x ./kubectl ./aws-iam-authenticator      
+      - chmod +x ./kubectl ./aws-iam-authenticator    
+      - echo `kubectl version`  
       # - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
       - export PATH=$PWD/:$PATH  
       - python --version
